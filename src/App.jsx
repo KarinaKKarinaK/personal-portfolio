@@ -1,9 +1,11 @@
 import React from 'react';
+import Navbar from './components/Navbar';
 import './App.css';
 
 const App = () => {
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-black">
+      <Navbar />
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-blue-700 to-black" />
 
