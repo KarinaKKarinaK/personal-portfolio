@@ -1,11 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 
+// Linear interpolation function for smooth easing
+function lerp(start, end, amt) {
+  return (1 - amt) * start + amt * end;
+}
+
 const App = () => {
+  // Start at center of screen
+  const initial = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const [sphere, setSphere] = useState(initial);
+  const mouse = useRef(initial);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
+    let animationFrame;
+    const animate = () => {
+      setSphere((prev) => ({
+        x: lerp(prev.x, mouse.current.x, 0.15),
+        y: lerp(prev.y, mouse.current.y, 0.15),
+      }));
+      animationFrame = requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-black">
       <Navbar />
+      {/* Lagging black sphere */}
+      <div
+        className="fixed pointer-events-none z-50"
+        style={{
+          left: sphere.x - 10,
+          top: sphere.y - 10,
+          width: 20,
+          height: 20,
+          borderRadius: '50%',
+          background: 'black',
+          boxShadow: '0 0 16px 4px rgba(0,0,0,0.2)',
+          transition: 'none',
+        }}
+      />
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-blue-700 to-black" />
 
