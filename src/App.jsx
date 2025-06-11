@@ -84,8 +84,8 @@ const App = () => {
     let animationFrame;
     const animate = () => {
       setSphere((prev) => ({
-        x: lerp(prev.x, mouse.current.x, 0.15),
-        y: lerp(prev.y, mouse.current.y, 0.15),
+        x: lerp(prev.x, mouse.current.x, 0.32), // Increased from 0.15 to 0.28 for faster follow
+        y: lerp(prev.y, mouse.current.y, 0.32),
       }));
       animationFrame = requestAnimationFrame(animate);
     };

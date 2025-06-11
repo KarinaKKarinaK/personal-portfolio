@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-
-const LogoK = () => (
-  <span className="text-cyberpurple font-extrabold text-3xl select-none" style={{ fontFamily: 'inherit' }}>
-    K
-  </span>
-);
+import LogoK from './LogoK';
 
 const navLinks = [
   { name: "Work", href: "#work" },
@@ -18,9 +13,15 @@ const Navbar = () => {
 
   return (
     <nav className="fixed left-0 w-full z-30 backdrop-blur-md" style={{ top: '2.5rem' }}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
-        {/* Logo */}
-        <LogoK />
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-1 md:px-4 py-4">
+        {/* Logo as Home Button */}
+        <a
+          href="/"
+          className="flex items-center focus:outline-none"
+          aria-label="Home"
+        >
+          <LogoK />
+        </a>
         {/* Nav Links */}
         <div className="hidden md:flex gap-12">
           {navLinks.map((link, idx) => (
