@@ -1,10 +1,16 @@
 import React from 'react';
 
+const LogoK = () => (
+  <span className="text-cyberpurple font-extrabold text-3xl select-none" style={{ fontFamily: 'inherit' }}>
+    K
+  </span>
+);
+
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 w-full z-30 backdrop-blur-md bg-black/60 border-b border-white/10">
+  <nav className="fixed top-0 left-0 w-full z-30 backdrop-blur-md">
     <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
       {/* Logo */}
-      <span className="text-xl font-bold text-white tracking-widest">Karina</span>
+      <LogoK />
       {/* Nav Links */}
       <div className="hidden md:flex gap-8">
         <a href="#work" className="text-white/80 hover:text-white transition">Work</a>
